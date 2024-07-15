@@ -9,6 +9,11 @@
 			<option value="status">Status</option>
 		</select>
 	</div>
+	<div class="flex justify-center mb-4">
+		<button (click)="exportToCSV()" class="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-700">
+			Export to CSV
+		</button>
+	</div>
 	<div class="grid grid-cols-12 gap-4">
 		<div class="col-span-4 p-4">
 			<form [formGroup]="form" class="max-w-lg mx-auto bg-white p-6 rounded-md shadow-md">

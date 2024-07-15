@@ -145,4 +145,23 @@ export class ListComponent {
       this.toDoListItems = JSON.parse(tasks);
     }
   }
+
+  exportToCSV() {
+    const csvData = this.convertToCSV(this.toDoListItems);
+    const blob = new Blob([csvData], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.setAttribute('hidden', '');
+    a.setAttribute('href', url);
+    a.setAttribute('download', 'tasks.csv');
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  convertToCSV(objArray: any[]): string {
+    const header = Object.keys(objArray[0]).join(',');
+    const rows = objArray.map((obj) => Object.values(obj).join(','));
+    return [header, ...rows].join('\n');
+  }
 }
