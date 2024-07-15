@@ -113,9 +113,7 @@ export class ListComponent {
     const sortKey = (event.target as HTMLSelectElement).value;
     switch (sortKey) {
       case 'priority':
-        this.toDoListItems.sort((a, b) =>
-          a.priority > b.priority ? -1 : a.priority < b.priority ? 1 : 0
-        );
+        this.toDoListItems.sort((a, b) => this.getPriorityValue(b.priority) - this.getPriorityValue(a.priority));
         break;
       case 'dueDate':
         this.toDoListItems.sort(
@@ -132,6 +130,19 @@ export class ListComponent {
         // Default sorting by added time (assumed by id)
         this.toDoListItems.sort((a, b) => a.id - b.id);
         break;
+    }
+  }
+
+  getPriorityValue(priority: string): number {
+    switch (priority) {
+      case 'High':
+        return 3;
+      case 'Medium':
+        return 2;
+      case 'Low':
+        return 1;
+      default:
+        return 0;
     }
   }
 
