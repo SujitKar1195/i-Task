@@ -1,0 +1,20 @@
+.status-Completed {
+	background-color: #84cc16;
+}
+
+.status-To-Do{
+	background-color: #14b8a6;
+}
+.status-In-Progress{
+	background-color: #6b7280 ;
+}
+
+.priority-High{
+	background-color: #f97316;
+}
+.priority-Medium{
+	background-color: #ffd700;
+}
+.priority-Low {
+	background-color: #22c55e;
+}

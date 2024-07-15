@@ -1,0 +1,78 @@
+<div class="container mx-auto mt-8">
+	<h1 class="text-3xl font-bold mb-8 text-center">iTask</h1>
+	<div class="flex justify-center mb-4">
+		<label for="sortKey" class="mr-2 text-lg font-bold">Sort By:</label>
+		<select id="sortKey" (change)="onSortChange($event)" class="w-40 p-2 border border-gray-300 rounded">
+
+			<option value="priority">Priority</option>
+			<option value="dueDate">Due Date</option>
+			<option value="status">Status</option>
+		</select>
+	</div>
+	<div class="grid grid-cols-12 gap-4">
+		<div class="col-span-4 p-4">
+			<form [formGroup]="form" class="max-w-lg mx-auto bg-white p-6 rounded-md shadow-md">
+				<div class="mb-4">
+					<label for="title" class="block text-sm font-bold mb-2">
+						Title:
+					</label>
+					<input formControlName='title' type="text" id="title" name="title"
+						class="w-full p-2 border border-gray-300 rounded">
+				</div>
+				<div class="mb-4">
+					<label for="description" class="block text-sm font-bold mb-2">
+						Description:
+					</label>
+					<input formControlName='description' type="text" id="description" name="description"
+						class="w-full p-2 border border-gray-300 rounded">
+				</div>
+				<div class="mb-4">
+					<label for="priority" class="block text-sm font-bold mb-2">
+						Priority:
+					</label>
+					<select name="priority" id="priority" class="w-full p-2 border border-gray-300 rounded"
+						formControlName="priority">
+						<option value="Low">Low</option>
+						<option value="Medium">Medium</option>
+						<option value="High">High</option>
+					</select>
+				</div>
+				<div class="mb-4">
+					<label for="dueDate" class="block text-sm font-bold mb-2">
+						Due Date:
+					</label>
+					<input formControlName='dueDate' type="date" id="dueDate" name="dueDate"
+						class="w-full p-2 border border-gray-300 rounded">
+				</div>
+				<div class="mb-4">
+					<label for="status" class="block text-sm font-bold mb-2">
+						Status:
+					</label>
+					<select name="status" id="status" class="w-full p-2 border border-gray-300 rounded"
+						formControlName="status">
+						<option value="To-Do">To-Do</option>
+						<option value="In-Progress">In-Progress</option>
+						<option value="Completed">Completed</option>
+					</select>
+				</div>
+				<button (click)="submitForm()" type="button"
+					class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+					{{!editTaskId ? "Add" : "Save"}}
+
+				</button>
+			</form>
+		</div>
+		<div class="col-span-6 p-4">
+			<div class="grid gap-4">
+				@for(item of toDoListItems; track $index){
+				<app-task [item]="item" (toBeDeletedItem)="deleteItem($event)"
+					(markCompleted)="markItemCompleted($event)" (toBeEdited)="editItem($event)">
+
+				</app-task>
+				}@empty {
+				<app-empty-message-card></app-empty-message-card>
+				}
+			</div>
+		</div>
+	</div>
+</div>

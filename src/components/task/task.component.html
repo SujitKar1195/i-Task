@@ -1,0 +1,35 @@
+<div class="bg-white p-4 rounded-md shadow-md">
+	<div class="mb-4 flex justify-between items-center">
+		<div>
+
+			<span class="text-yellow-800 rounded-md px-2 py-1 text-sm font-semibold 
+			priority-{{item.priority}}
+			">
+				{{item.priority}}
+			</span>
+
+			<span class="bg-gray-200 rounded-md px-2 py-1 text-sm font-semibold 
+			status-{{item.status}}
+			">
+				{{item.status}}
+			</span>
+			<span class="bg-green-300 rounded-md px-2 py-1 text-sm font-semibold ">
+				{{item.dueDate}}
+			</span>
+
+		</div>
+	</div>
+	<h3 class="text-lg font-bold mb-2 ">{{item.title}}</h3>
+	<p class="text-gray-500">
+		{{item.description }}
+	</p>
+	<div class="mt-4 flex justify-end gap-4">
+		<button class="text-red-500 hover:underline" (click)="deleteItem(item)">Delete</button>
+		<button class="text-blue-500 hover:underline" (click)="editItem(item)">Edit</button>
+		@if (item.status !== 'Completed') {
+		<button class="text-green-500 hover:underline" (click)="markItemCompleted(item)">
+			Mark as Completed
+		</button>
+		}
+	</div>
+</div>
